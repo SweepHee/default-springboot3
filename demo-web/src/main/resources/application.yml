@@ -1,0 +1,83 @@
+
+server:
+  port: 8080
+  shutdown: graceful
+  servlet:
+    encoding:
+      force: true
+      charset: UTF-8
+
+spring:
+  main:
+    banner-mode: off
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+    hidden-method:
+      filter:
+        enabled: true
+
+  profiles:
+    active: local
+
+  application:
+    name: spring3test
+
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+
+  web:
+    resources:
+      chain:
+        cache: false
+      cache:
+        period: 0
+      static-locations: classpath:/static/
+
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+
+logging:
+
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      enabled: true
+      location:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/boot3test?useUnicode=true&characterEncoding=utf8
+    driver-class-name: org.postgresql.Driver
+    username: boot3test
+    password: '1234'
+
+  thymeleaf:
+    cache: false
+
+  devtools:
+    livereload:
+      enabled: true
+
+upload:
+  path: /Users/Shared/static/upload
+
+
