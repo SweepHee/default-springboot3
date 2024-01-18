@@ -108,15 +108,19 @@ jooq {
 
 
 dependencies {
+	implementation(project(":demo-common"))
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-//	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.github.vladimir-bukhtoyarov:bucket4j-core:7.1.0")
 	implementation ("org.springframework.boot:spring-boot-starter-aop")
+//	implementation("org.apache.kafka:kafka-clients:2.8.2")
+	implementation ("org.springframework.kafka:spring-kafka")
+//	implementation("org.slf4j:slf4j-simple:2.0.3")
 	implementation("org.jooq:jooq:3.17.7")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -139,4 +143,6 @@ dependencies {
 	jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("io.rest-assured:spring-mock-mvc:4.0.0")
+	testImplementation("io.mockk:mockk:1.9.3")
 }

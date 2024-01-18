@@ -1,4 +1,5 @@
 rootProject.name = "demo"
 include(
-    "demo-web"
+    "demo-web",
+    "demo-common"
 )
