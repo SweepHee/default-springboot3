@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-test
+test...^^
 <p sec:authorize="hasAnyRole('ROLE_ADMIN')"></p>
 <p th:text="${test}"></p>
 <p th:text="${hello}"></p>

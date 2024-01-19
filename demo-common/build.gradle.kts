@@ -5,6 +5,7 @@ bootJar.enabled = false
 jar.enabled = true
 
 dependencies {
+	implementation ("org.springframework.kafka:spring-kafka")
 	implementation ("com.slack.api:slack-api-client:1.18.0")
 	implementation ("com.squareup.okhttp3:okhttp:4.9.3")
 	implementation ("org.apache.commons:commons-lang3")
