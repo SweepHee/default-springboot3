@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container">
+    <h2 class="text-center">Checkout</h2>
+    <form name="checkOutEntity" action="/submitCheckOut" method="post">
+        <div class="form-group">
+            <label for="member">Member:</label>
+            <input type="text" class="form-control" id="memberId" name="memberId" value="10001" required>
+        </div>
+        <div class="form-group">
+            <label for="product">Product:</label>
+            <input type="text" class="form-control" id="productId" name="productId" value="999999" required>
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="text" class="form-control" id="amount" name="amount" value="33000" required>
+        </div>
+        <div class="form-group">
+            <label for="shipping-address">Amount:</label>
+            <textarea type="text" class="form-control" id="shippingAddress" name="shippingAddress" value="서울시 종로구" required>서울시 종로구</textarea>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">결재하기</button>
+    </form>
+</div>
+
+</body>
+</html>
