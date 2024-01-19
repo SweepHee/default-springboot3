@@ -42,21 +42,10 @@ noArg {
 	annotation("jakarta.persistence.Embeddable")
 }
 
-tasks.withType<org.flywaydb.gradle.task.FlywayCleanTask>().configureEach {
-	isEnabled = true
-}
-
 val jdbcUrl = "jdbc:postgresql://localhost:5432/boot3test?useUnicode=true&characterEncoding=utf8"
 val jdbcDriver = "org.postgresql.Driver"
 val jdbcUser = "boot3test"
 val jdbcPassword = "1234"
-
-flyway {
-	url = jdbcUrl
-	user = jdbcUser
-	password = jdbcPassword
-	cleanDisabled = false
-}
 
 jooq {
 	version.set("3.17.7")
@@ -109,10 +98,13 @@ jooq {
 
 dependencies {
 	implementation(project(":demo-common"))
+	implementation(project(":demo-data"))
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation ("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+
+	implementation ("org.springframework.kafka:spring-kafka")
 
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
@@ -120,12 +112,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.github.vladimir-bukhtoyarov:bucket4j-core:7.1.0")
 	implementation ("org.springframework.boot:spring-boot-starter-aop")
-//	implementation("org.apache.kafka:kafka-clients:2.8.2")
-	implementation ("org.springframework.kafka:spring-kafka")
-//	implementation("org.slf4j:slf4j-simple:2.0.3")
-	implementation("org.jooq:jooq:3.17.7")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("com.github.maricn:logback-slack-appender:1.4.0")
 	implementation("io.github.microutils:kotlin-logging:2.0.6")
 	implementation("com.github.ua-parser:uap-java:1.5.4")
@@ -135,14 +124,14 @@ dependencies {
 	implementation("org.apache.tika:tika-core:2.4.1")
 	implementation("org.apache.poi:poi-ooxml:4.1.2")
 	implementation("org.yaml:snakeyaml:2.1")
-	implementation("org.flywaydb:flyway-core")
-	runtimeOnly("org.postgresql:postgresql")
+
+	implementation("org.jooq:jooq:3.17.7")
+	jooqGenerator("org.postgresql:postgresql:42.5.1")
+	jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
+
 	implementation("org.springframework.boot:spring-boot-devtools")
 
 	implementation ("org.apache.commons:commons-text:1.8")
-
-	jooqGenerator("org.postgresql:postgresql:42.5.1")
-	jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.rest-assured:spring-mock-mvc:4.0.0")

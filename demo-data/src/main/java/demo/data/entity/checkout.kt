@@ -1,4 +1,4 @@
-package demo.web.entity
+package demo.data.entity
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
@@ -12,6 +12,6 @@ data class Checkout(
     var memberId: Long? = null,
     var productId: Long? = null,
     var amount: Long? = null,
-    var shippingAddress: Long? = null,
-    var createdAt: LocalDateTime = LocalDateTime.now()
+    var shippingAddress: String? = null,
+    var createdAt: LocalDateTime? = LocalDateTime.now()
 )

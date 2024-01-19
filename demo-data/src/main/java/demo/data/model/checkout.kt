@@ -1,4 +1,4 @@
-package demo.web.model
+package demo.data.model
 
 import java.util.Date
 

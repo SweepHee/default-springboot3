@@ -1,4 +1,6 @@
 import org.jooq.meta.jaxb.Logging
+val jar: Jar by tasks
+val bootJar: org.springframework.boot.gradle.tasks.bundling.BootJar by tasks
 
 plugins {
 	java
@@ -20,6 +22,9 @@ tasks {
 	}
 }
 
+
+bootJar.enabled = false
+jar.enabled = true
 
 apply {
 	plugin("org.jetbrains.kotlin.plugin.spring")
@@ -109,20 +114,16 @@ jooq {
 
 dependencies {
 	implementation(project(":demo-common"))
-	implementation(project(":demo-data"))
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.github.vladimir-bukhtoyarov:bucket4j-core:7.1.0")
 	implementation ("org.springframework.boot:spring-boot-starter-aop")
-//	implementation("org.apache.kafka:kafka-clients:2.8.2")
 	implementation ("org.springframework.kafka:spring-kafka")
-//	implementation("org.slf4j:slf4j-simple:2.0.3")
 	implementation("org.jooq:jooq:3.17.7")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("com.github.maricn:logback-slack-appender:1.4.0")
 	implementation("io.github.microutils:kotlin-logging:2.0.6")
 	implementation("com.github.ua-parser:uap-java:1.5.4")

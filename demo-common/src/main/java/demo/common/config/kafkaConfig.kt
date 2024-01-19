@@ -51,7 +51,7 @@ class KafkaProducerConfig {
 
 @EnableKafka
 @Configuration
-class KafkaConsumerProducerConfig {
+class KafkaConsumerConfig {
 
     private val BOOTSTRAP_SERVER = KafkaConstant().BOOTSTRAP_SERVER
     private val GROUP_ID = KafkaConstant().GROUP_ID
@@ -60,7 +60,6 @@ class KafkaConsumerProducerConfig {
     fun consumerFactory() = DefaultKafkaConsumerFactory<String, Any>(
         hashMapOf<String, Any>(
             ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to  BOOTSTRAP_SERVER,
-            ConsumerConfig.GROUP_ID_CONFIG to GROUP_ID,
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
         )

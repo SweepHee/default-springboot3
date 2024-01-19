@@ -1,7 +1,7 @@
 package demo.web.controller
 
 
-import demo.web.repository.MemberRepository
+import demo.data.repository.MemberRepository
 import demo.web.jooq.Tables.STAR
 import org.jooq.DSLContext
 import org.springframework.stereotype.Controller
@@ -21,14 +21,6 @@ class MainController(
         model.addAttribute("hello", "world")
     }
 
-    @GetMapping
-    fun index(model: Model): String {
-        println("hello?")
-//        memberRepository.deleteById(1)
-        model.addAttribute("test", "test!!!")
-//        model.addAttribute("hello" ,"world...")
-        return "index"
-    }
 
     @GetMapping("test")
     @ResponseBody

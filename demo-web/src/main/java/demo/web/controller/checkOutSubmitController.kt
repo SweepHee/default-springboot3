@@ -1,7 +1,7 @@
 package demo.web.controller
 
+import demo.data.model.Checkout
 import demo.web.facade.CheckoutFacade
-import demo.web.model.Checkout
 import mu.KotlinLogging
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

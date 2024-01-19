@@ -1,13 +1,16 @@
 package demo.web.service
 
 
-import demo.web.model.TopicName
+import demo.common.model.KafkaTopic
 import demo.common.model.Message
+import demo.web.facade.CheckoutFacade
 import jakarta.annotation.Resource
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.SendResult
+import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import java.util.concurrent.CompletableFuture
@@ -17,19 +20,18 @@ class KafkaProducerService{
 
     val logger = KotlinLogging.logger {}
 
-    private val TOPIC_NAME = "topic5"
-
     @Autowired
     lateinit var kafkaTemplate: KafkaTemplate<String, String>
 
     @Resource(name = "kafkaJsonTemplate")
     lateinit var kafkaJsonTemplate: KafkaTemplate<String, Message>
 
-    fun send(topic: TopicName, message: String) {
+    fun send(topic: KafkaTopic.Topic, message: String) {
+        println("send....")
         kafkaTemplate.send(topic.topic, message)
     }
 
-    fun sendWithCallback(topic: TopicName, message: String) {
+    fun sendWithCallback(topic: KafkaTopic.Topic, message: String) {
         val future: CompletableFuture<SendResult<String, String>> = kafkaTemplate.send(topic.topic, message)
 
         future.whenComplete{ result, e ->
@@ -42,7 +44,9 @@ class KafkaProducerService{
         }
     }
 
-    fun sendJson(message: Message) = kafkaJsonTemplate.send(TOPIC_NAME, message)
+    fun sendJson(message: Message) = kafkaJsonTemplate.send(KafkaTopic.Topic.TOPIC5.topic, message)
 
 
 }
+
+

@@ -1,7 +1,7 @@
 package demo.web.controller
 
 
-import demo.web.model.TopicName
+import demo.common.model.KafkaTopic
 import demo.web.service.KafkaProducerService
 import demo.common.model.Message
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,13 +14,13 @@ class ProducerController(
 
     @RequestMapping("publish")
     fun publish(message: String): String {
-        kafkaProducerService.send(TopicName.TOPIC5, message)
+        kafkaProducerService.send(KafkaTopic.Topic.TOPIC5, message)
         return "published a message : $message"
     }
 
     @RequestMapping("publish2")
     fun publishWithCallback(message: String): String {
-        kafkaProducerService.sendWithCallback(TopicName.TOPIC5, message)
+        kafkaProducerService.sendWithCallback(KafkaTopic.Topic.TOPIC5, message)
         return "published a message with callback: $message"
     }
 

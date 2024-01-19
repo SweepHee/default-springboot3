@@ -1,10 +1,11 @@
 package demo.web.facade
 
-import demo.web.model.TopicName
 import demo.web.service.CheckoutService
 import demo.web.service.KafkaProducerService
 import com.fasterxml.jackson.databind.ObjectMapper
-import demo.web.entity.Checkout
+import demo.common.model.KafkaTopic
+import demo.data.model.Checkout as CheckoutModel
+import demo.data.entity.Checkout
 import jakarta.annotation.Resource
 import mu.KotlinLogging
 import org.modelmapper.ModelMapper
@@ -25,13 +26,13 @@ class CheckoutFacade(
 
     val logger = KotlinLogging.logger {}
 
-    fun saveAndProduce(model: demo.web.model.Checkout): Long? {
+    fun saveAndProduce(model: CheckoutModel): Long? {
         try {
             val toEntity = modelMapper.map(model, Checkout::class.java)
-            val entity = checkoutService.save(toEntity)
-            val toModel = modelMapper.map(entity, demo.web.model.Checkout::class.java)
+//            val entity = checkoutService.save(toEntity)
+            val toModel = modelMapper.map(toEntity, CheckoutModel::class.java)
             val toJson = objectMapper.writeValueAsString(toModel)
-            kafkaProducerService.send(TopicName.CHECKOUT_COMPLETE_TOPIC, toJson)
+            kafkaProducerService.send(KafkaTopic.Topic.CHECKOUT_COMPLETE_TOPIC, toJson)
             return toModel.checkoutId
         } catch (e: Exception) {
             logger.error { "[ ERROR: SAVE_AND_PRODUCE ] ${e.message}" }

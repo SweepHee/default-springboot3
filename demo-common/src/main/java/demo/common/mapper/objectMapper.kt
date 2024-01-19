@@ -16,8 +16,3 @@ class ObjectMapperConfig {
     }
 
 }
-
-
-fun Any.test(): String {
-    return "hello world"
-}

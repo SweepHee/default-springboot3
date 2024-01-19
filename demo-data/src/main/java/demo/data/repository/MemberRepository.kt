@@ -1,6 +1,6 @@
-package demo.web.repository
+package demo.data.repository
 
-import demo.web.entity.Member
+import demo.data.entity.Member
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface MemberRepository: JpaRepository<Member, Int> {

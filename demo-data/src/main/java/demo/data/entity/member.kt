@@ -1,4 +1,4 @@
-package demo.web.entity
+package demo.data.entity
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
