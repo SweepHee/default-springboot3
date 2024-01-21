@@ -9,10 +9,9 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Service
 
 @Service
-//@ConfigurationPropertiesScan(basePackageClasses = [KafkaConsumerConfig::class])
 class KafkaConsumerService(
     val checkoutFacade: CheckoutFacade,
-) {
+){
 
     private val logger = KotlinLogging.logger{}
 

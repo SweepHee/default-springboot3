@@ -1,19 +1,18 @@
 package demo.web.service
 
 
+import demo.common.annotation.EnableKafkaProducerConfig
 import demo.common.model.KafkaTopic
 import demo.common.model.Message
-import demo.web.facade.CheckoutFacade
 import jakarta.annotation.Resource
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.SendResult
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import java.util.concurrent.CompletableFuture
+
 
 @Service
 class KafkaProducerService{

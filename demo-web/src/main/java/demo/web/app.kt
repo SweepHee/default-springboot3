@@ -1,11 +1,12 @@
 package demo.web
 
+import demo.common.annotation.EnableKafkaProducerConfig
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication
+@EnableKafkaProducerConfig
 @ComponentScan("demo")
 class WebApplication {
 	companion object {

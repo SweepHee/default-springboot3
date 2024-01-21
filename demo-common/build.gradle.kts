@@ -10,4 +10,6 @@ dependencies {
 	implementation ("com.squareup.okhttp3:okhttp:4.9.3")
 	implementation ("org.apache.commons:commons-lang3")
 	implementation ("commons-io:commons-io:2.8.0")
+	implementation("org.apache.kafka:kafka-streams")
+	implementation("com.jayway.jsonpath:json-path:2.7.0")
 }
