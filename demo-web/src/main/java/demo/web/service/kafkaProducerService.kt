@@ -26,7 +26,6 @@ class KafkaProducerService{
     lateinit var kafkaJsonTemplate: KafkaTemplate<String, Message>
 
     fun send(topic: KafkaTopic.Topic, message: String) {
-        println("send....")
         kafkaTemplate.send(topic.topic, message)
     }
 

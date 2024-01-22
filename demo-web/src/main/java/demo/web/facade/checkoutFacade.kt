@@ -29,8 +29,8 @@ class CheckoutFacade(
     fun saveAndProduce(model: CheckoutModel): Long? {
         try {
             val toEntity = modelMapper.map(model, Checkout::class.java)
-//            val entity = checkoutService.save(toEntity)
-            val toModel = modelMapper.map(toEntity, CheckoutModel::class.java)
+            val entity = checkoutService.save(toEntity)
+            val toModel = modelMapper.map(entity, CheckoutModel::class.java)
             val toJson = objectMapper.writeValueAsString(toModel)
             kafkaProducerService.send(KafkaTopic.Topic.CHECKOUT_COMPLETE_TOPIC, toJson)
             return toModel.checkoutId

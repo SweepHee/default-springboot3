@@ -19,7 +19,7 @@ class CheckOutSubmitController(
         logger.info { "hello world" }
         val checkoutId = checkoutFacade.saveAndProduce(checkout)
         model.addAttribute("checkoutId", checkoutId)
-        return "checkout/form"
+        return "redirect:/checkOutForm"
     }
 
 }

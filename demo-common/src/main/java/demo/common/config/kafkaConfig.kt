@@ -25,7 +25,7 @@ import org.springframework.kafka.core.ProducerFactory
 import org.springframework.kafka.support.serializer.JsonSerializer
 
 data class KafkaConstant(
-    val BOOTSTRAP_SERVER: String = "localhost:9092",
+    val BOOTSTRAP_SERVER: String = "localhost:29092",
     val GROUP_ID: String = "group3",
 )
 
@@ -89,13 +89,12 @@ class KafkaConsumerConfig {
 @EnableKafka
 @EnableKafkaStreams
 @ConditionalOnBean(annotation = [EnableKafkaStreamConfig::class])
-//@Conditional(KafkaStreamEnableCondition::class)
 class KafkaStreamConfiguration {
 
     @Bean(name = [ KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME ])
     fun kafkaStreamConfiguration() = KafkaStreamsConfiguration(hashMapOf<String, Any>(
         StreamsConfig.APPLICATION_ID_CONFIG to "kafka-streams",
-        StreamsConfig.BOOTSTRAP_SERVERS_CONFIG to "localhost:9092",
+        StreamsConfig.BOOTSTRAP_SERVERS_CONFIG to KafkaConstant().BOOTSTRAP_SERVER,
         StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG to Serdes.String().javaClass,
         StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG to Serdes.String().javaClass,
         StreamsConfig.COMMIT_INTERVAL_MS_CONFIG to 1000

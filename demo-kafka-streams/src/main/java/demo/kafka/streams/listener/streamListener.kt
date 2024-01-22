@@ -24,7 +24,7 @@ class StreamListener {
     fun kafkaStream(builder: StreamsBuilder): KStream<String, String> {
         return builder.stream<String, String>(INPUT_TOPIC)
             .apply {
-                map { _, value -> KeyValue(value.jsonValue("productId").toLong(), value.jsonValue("amount").toLong()) }
+                 map { _, value -> KeyValue(value.jsonValue("productId").toLong(), value.jsonValue("amount").toLong()) }
                 .groupByKey( Grouped.with(Serdes.Long(), Serdes.Long()) )
                 .windowedBy (TimeWindows.ofSizeAndGrace(Duration.ofMinutes(1), Duration.ZERO))
                 .reduce(Long::plus)
@@ -37,3 +37,4 @@ class StreamListener {
 
 
 }
+
