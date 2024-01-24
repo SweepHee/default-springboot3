@@ -22,19 +22,16 @@ class StreamListener {
 
     @Bean
     fun kafkaStream(builder: StreamsBuilder): KStream<String, String> {
-        return builder.stream<String, String>(INPUT_TOPIC)
-            .apply {
-                 map { _, value -> KeyValue(value.jsonValue("productId").toLong(), value.jsonValue("amount").toLong()) }
-                .groupByKey( Grouped.with(Serdes.Long(), Serdes.Long()) )
-                .windowedBy (TimeWindows.ofSizeAndGrace(Duration.ofMinutes(1), Duration.ZERO))
-                .reduce(Long::plus)
-                .toStream{ key, _ -> key.key() }
-                .mapValues(Stream::sendingJson)
-                .selectKey{ _, _ -> null }
-                .to(OUTPIC_TOPIC, Produced.with(null, Serdes.String()))
-            }
+        return builder.stream<String, String>(INPUT_TOPIC).apply {
+            map { _, value -> KeyValue(value.jsonValue("productId").toLong(), value.jsonValue("amount").toLong()) }
+            .groupByKey( Grouped.with(Serdes.Long(), Serdes.Long()) )
+            .windowedBy (TimeWindows.ofSizeAndGrace(Duration.ofMinutes(1), Duration.ZERO))
+            .reduce(Long::plus)
+            .toStream{ key, _ -> key.key() }
+            .mapValues(Stream::sendingJson)
+            .selectKey{ _, _ -> null }
+            .to(OUTPIC_TOPIC, Produced.with(null, Serdes.String()))
         }
-
+    }
 
 }
-
