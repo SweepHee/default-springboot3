@@ -1,0 +1,21 @@
+version: "3"
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "boot3test"
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: "boot3test"
+  redis:
+    image: redis:7
+    command: redis-server --requirepass "1234" --maxmemory-policy volatile-ttl
+    restart: always
+    container_name: redis
+    labels:
+      - "name=redis"
+    ports:
+      - 6379:6379
