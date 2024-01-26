@@ -1,0 +1,8 @@
+### Hello
+GET http://localhost:9001/hello
+
+### Example Order Product
+GET http://localhost:9001/providers/order-api/v1/orders
+
+### Exmaple Order Product Save
+POST http://localhost:9001/providers/order-api/v1/orders

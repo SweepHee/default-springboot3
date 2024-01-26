@@ -21,6 +21,12 @@ class MainController(
         model.addAttribute("hello", "world")
     }
 
+    @GetMapping
+    @ResponseBody
+    fun index(): String {
+        return "hello world"
+    }
+
 
     @GetMapping("test")
     @ResponseBody

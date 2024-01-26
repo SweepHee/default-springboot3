@@ -1,5 +1,9 @@
 package demo.web.controller
 
+import jakarta.servlet.http.HttpSession
+import org.apache.catalina.connector.RequestFacade
+import org.apache.catalina.connector.ResponseFacade
+import org.apache.catalina.session.StandardSessionFacade
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,7 +22,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 class KafkaTest(
     @Autowired
-    var mockMvc: MockMvc
+    var mockMvc: MockMvc,
+    var session: HttpSession
 ) {
 
 

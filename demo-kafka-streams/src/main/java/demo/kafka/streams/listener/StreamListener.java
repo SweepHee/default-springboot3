@@ -2,6 +2,7 @@
 //
 //import com.jayway.jsonpath.JsonPath;
 //import demo.common.model.KafkaTopic;
+//import org.apache.catalina.util.CustomObjectInputStream;
 //import org.apache.kafka.common.serialization.Serdes;
 //import org.apache.kafka.streams.KeyValue;
 //import org.apache.kafka.streams.StreamsBuilder;
@@ -13,6 +14,8 @@
 //import org.springframework.stereotype.Component;
 //
 //import java.time.Duration;
+//import java.util.Arrays;
+//import java.util.stream.Stream;
 //
 //@Component
 //public class StreamListener {
@@ -22,6 +25,8 @@
 //
 //    @Bean
 //    public KStream<String, String> jsonToKStream(StreamsBuilder builder) {
+//        String[] test = {"1","2"};
+//        Arrays.stream(test).map(i -> i + "aa");
 //        KStream<String, String> inputStream = builder.stream(INPUT_TOPIC);
 //        inputStream
 //                .map ((key, value) -> new KeyValue<>(getProductId(value), getAmount(value)) )
@@ -37,6 +42,7 @@
 //    }
 //
 //
+//
 //    public static Long getProductId(String productId) {
 //        return JsonPath.parse(productId).read("$.productId", Long.class);
 //    }
@@ -46,7 +52,7 @@
 //    }
 //
 //    public static String sendingJson(Long productId, Long amount) {
-//        String jsonData = "{\"productId\":&d,\"windowedAmount\":%d,\"createdAt\":%d}";
+//        String jsonData = "{\"productId\":%d,\"windowedAmount\":%d,\"createdAt\":%d}";
 //        return String.format(jsonData, productId, amount, System.currentTimeMillis());
 //    }
 //

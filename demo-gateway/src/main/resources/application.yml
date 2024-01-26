@@ -1,0 +1,39 @@
+
+server:
+  port: 9001
+  shutdown: graceful
+
+
+
+
+
+spring:
+  main:
+    banner-mode: off
+    web-application-type: reactive
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 10000
+        response-timeout: 10s
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+  profiles:
+    active: local
+
+  application:
+    name: spring3test
+
+
+route:
+  order-api:
+    v1:
+      base-url: http://localhost:8080/
+
+
+
+

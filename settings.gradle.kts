@@ -4,5 +4,6 @@ include(
     "demo-consumer",
     "demo-kafka-streams",
     "demo-common",
-    "demo-data"
+    "demo-data",
+    "demo-gateway",
 )

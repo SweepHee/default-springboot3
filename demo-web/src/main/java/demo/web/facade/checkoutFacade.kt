@@ -26,6 +26,8 @@ class CheckoutFacade(
 
     val logger = KotlinLogging.logger {}
 
+
+    // NOTE : 저장 후 디비 발행
     fun saveAndProduce(model: CheckoutModel): Long? {
         try {
             val toEntity = modelMapper.map(model, Checkout::class.java)

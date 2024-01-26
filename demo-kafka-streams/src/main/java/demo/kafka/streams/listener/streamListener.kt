@@ -18,7 +18,7 @@ import java.time.Duration
 class StreamListener {
 
     val INPUT_TOPIC = KafkaTopic.Topic.CHECKOUT_COMPLETE_TOPIC.topic
-    val OUTPIC_TOPIC = KafkaTopic.Topic.CHECKOUT_OUTPUT_TOPIC.topic
+    val OUTPUT_TOPIC = KafkaTopic.Topic.CHECKOUT_OUTPUT_TOPIC.topic
 
     @Bean
     fun kafkaStream(builder: StreamsBuilder): KStream<String, String> {
@@ -30,7 +30,7 @@ class StreamListener {
             .toStream{ key, _ -> key.key() }
             .mapValues(Stream::sendingJson)
             .selectKey{ _, _ -> null }
-            .to(OUTPIC_TOPIC, Produced.with(null, Serdes.String()))
+            .to(OUTPUT_TOPIC, Produced.with(null, Serdes.String()))
         }
     }
 
