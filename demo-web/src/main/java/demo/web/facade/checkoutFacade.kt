@@ -3,6 +3,7 @@ package demo.web.facade
 import demo.web.service.CheckoutService
 import demo.web.service.KafkaProducerService
 import com.fasterxml.jackson.databind.ObjectMapper
+import demo.common.annotation.Facade
 import demo.common.model.KafkaTopic
 import demo.data.model.Checkout as CheckoutModel
 import demo.data.entity.Checkout
@@ -12,7 +13,7 @@ import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
-@Component
+@Facade
 class CheckoutFacade(
     private val checkoutService: CheckoutService,
     private val kafkaProducerService: KafkaProducerService
@@ -27,7 +28,7 @@ class CheckoutFacade(
     val logger = KotlinLogging.logger {}
 
 
-    // NOTE : 저장 후 디비 발행
+    // NOTE : 디비 저장 후 카프카 발행
     fun saveAndProduce(model: CheckoutModel): Long? {
         try {
             val toEntity = modelMapper.map(model, Checkout::class.java)

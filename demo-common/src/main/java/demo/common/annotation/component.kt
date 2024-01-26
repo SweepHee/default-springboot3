@@ -9,3 +9,12 @@ import org.springframework.stereotype.Component
 @MustBeDocumented
 @Component
 annotation class Router
+
+
+@Target(
+    AnnotationTarget.CLASS,
+)
+@Retention(AnnotationRetention.RUNTIME)
+@MustBeDocumented
+@Component
+annotation class Facade
